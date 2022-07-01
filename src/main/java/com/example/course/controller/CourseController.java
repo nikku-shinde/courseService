@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.course.dto.CourseDTO;
 import com.example.course.entity.Course;
 import com.example.course.entity.Questions;
 import com.example.course.entity.SubTopic;
@@ -46,7 +47,7 @@ public class CourseController {
 	
 	
 	@PostMapping("/add-course")
-	public ResponseEntity<Object> addCourse(@RequestBody Course course) {
+	public ResponseEntity<Object> addCourse(@RequestBody CourseDTO course) {
 		List<Course> courseList = this.courseRepo.findAll();
 		try {
 			for(Course courseData : courseList) {

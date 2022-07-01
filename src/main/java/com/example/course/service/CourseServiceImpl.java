@@ -3,6 +3,7 @@ package com.example.course.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.course.dto.CourseDTO;
 import com.example.course.entity.Course;
 import com.example.course.entity.Questions;
 import com.example.course.entity.SubTopic;
@@ -28,8 +29,12 @@ public class CourseServiceImpl implements CourseService {
 	private QuestionRepository questionRepo;
 
 	@Override
-	public Course addCourse(Course course) {
-		return this.courseRepo.save(course);
+	public Course addCourse(CourseDTO course) {
+		Course courseData = new Course();
+		courseData.setCourseName(course.getCourseName());
+		courseData.setAuthorId(course.getAuthorId());
+		courseData.setMentorId(course.getMentorId());
+		return this.courseRepo.save(courseData);
 	}
 
 	@Override
