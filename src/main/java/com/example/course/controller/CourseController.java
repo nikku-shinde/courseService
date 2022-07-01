@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.course.dto.CourseDTO;
+import com.example.course.dto.QuestionDTO;
+import com.example.course.dto.SubTopicDTO;
+import com.example.course.dto.TopicDTO;
 import com.example.course.entity.Course;
 import com.example.course.entity.Questions;
 import com.example.course.entity.SubTopic;
@@ -64,7 +67,7 @@ public class CourseController {
 	}
 	
 	@PostMapping("/add-topics")
-	public ResponseEntity<Object> addTopics(@RequestBody Topics topics) {
+	public ResponseEntity<Object> addTopics(@RequestBody TopicDTO topics) {
 		List<Topics> topicList = this.topicRepo.findAll();
 		try {
 			for(Topics topic : topicList) {
@@ -81,7 +84,7 @@ public class CourseController {
 	}
 	
 	@PostMapping("/add-sub_topics")
-	public ResponseEntity<Object> addSubTopics(@RequestBody SubTopic subTopic) {
+	public ResponseEntity<Object> addSubTopics(@RequestBody SubTopicDTO subTopic) {
 		List<SubTopic> subTopicList = this.subTopicRepo.findAll();
 		try {
 			for(SubTopic subTopicData : subTopicList) {
@@ -98,7 +101,7 @@ public class CourseController {
 	}
 	
 	@PostMapping("/add-questions")
-	public ResponseEntity<Object> addQuestions(@RequestBody Questions questions) {
+	public ResponseEntity<Object> addQuestions(@RequestBody QuestionDTO questions) {
 		List<Questions> questionList = this.questionRepo.findAll();
 		try {
 			for(Questions questionData : questionList) {

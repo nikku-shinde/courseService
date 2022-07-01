@@ -1,6 +1,9 @@
 package com.example.course.service;
 
 import com.example.course.dto.CourseDTO;
+import com.example.course.dto.QuestionDTO;
+import com.example.course.dto.SubTopicDTO;
+import com.example.course.dto.TopicDTO;
 import com.example.course.entity.Course;
 import com.example.course.entity.Questions;
 import com.example.course.entity.SubTopic;
@@ -10,10 +13,10 @@ public interface CourseService {
 	
 	public Course addCourse(CourseDTO course);
 	
-	public Topics addTopics(Topics topics);
+	public Topics addTopics(TopicDTO topics);
 	
-	public SubTopic addSubTopics(SubTopic subTopic);
+	public SubTopic addSubTopics(SubTopicDTO subTopic);
 	
-	public Questions addQuestions(Questions questions);
+	public Questions addQuestions(QuestionDTO questions);
 
 }

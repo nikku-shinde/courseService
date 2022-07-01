@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.course.dto.CourseDTO;
+import com.example.course.dto.QuestionDTO;
+import com.example.course.dto.SubTopicDTO;
+import com.example.course.dto.TopicDTO;
 import com.example.course.entity.Course;
 import com.example.course.entity.Questions;
 import com.example.course.entity.SubTopic;
@@ -38,23 +41,29 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Topics addTopics(Topics topics) {
+	public Topics addTopics(TopicDTO topics) {
+		Topics topic = new Topics();
 		Course course = this.courseRepo.findCourseByCourseName(topics.getCourse().getCourseName());
-		topics.setCourse(course);
-		return this.topicRepo.save(topics);
+		topic.setTopicName(topics.getTopicName());
+		topic.setCourse(course);
+		return this.topicRepo.save(topic);
 	}
 
 	@Override
-	public SubTopic addSubTopics(SubTopic subTopic) {
+	public SubTopic addSubTopics(SubTopicDTO subTopic) {
+		SubTopic subTopicData = new SubTopic();
 		Topics topics = this.topicRepo.findTopicByTopicName(subTopic.getTopic().getTopicName());
-		subTopic.setTopic(topics);
-		return this.subTopicRepo.save(subTopic);
+		subTopicData.setSubTopicName(subTopic.getSubTopicName());
+		subTopicData.setTopic(topics);
+		return this.subTopicRepo.save(subTopicData);
 	}
 
 	@Override
-	public Questions addQuestions(Questions questions) {
+	public Questions addQuestions(QuestionDTO questions) {
+		Questions questionData = new Questions();
 		SubTopic subTopic = this.subTopicRepo.findSubTopicBySubTopicName(questions.getSubTopic().getSubTopicName());
-		questions.setSubTopic(subTopic);
-		return this.questionRepo.save(questions);
+		questionData.setQuestion(questions.getQuestion());
+		questionData.setSubTopic(subTopic);
+		return this.questionRepo.save(questionData);
 	}
 }
