@@ -45,11 +45,10 @@ public class CourseController {
 	
 	
 	@PostMapping("/add-course")
-	public ResponseEntity<?> addCourse(@RequestBody Course course) {
+	public ResponseEntity<Object> addCourse(@RequestBody Course course) {
 		List<Course> courseList = this.courseRepo.findAll();
 		try {
 			for(Course courseData : courseList) {
-				System.out.println(courseData.getCourseName());
 				if(courseData.getCourseName().equalsIgnoreCase(course.getCourseName())) {
 					return ResponseEntity.ok(new Exception("Course already Added"));
 				}else {
@@ -63,8 +62,20 @@ public class CourseController {
 	}
 	
 	@PostMapping("/add-topics")
-	public Topics addTopics(@RequestBody Topics topics) {
-		return this.courseService.addTopics(topics);
+	public ResponseEntity<Object> addTopics(@RequestBody Topics topics) {
+		List<Topics> topicList = this.topicRepo.findAll();
+		try {
+			for(Topics topic : topicList) {
+				if(topic.getTopicName().equalsIgnoreCase(topics.getTopicName())) {
+					return ResponseEntity.ok(new Exception("Topic already Added"));
+				}else {
+					return ResponseEntity.ok(this.courseService.addTopics(topics));
+				}
+			}
+			return ResponseEntity.ok(new Exception("Course already Added"));
+		} catch (Exception e) {
+			return ResponseEntity.ok(new Exception("Course already Added"));
+		}
 	}
 	
 	@PostMapping("/add-sub_topics")
