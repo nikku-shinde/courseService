@@ -21,6 +21,7 @@ import com.example.course.repository.QuestionRepository;
 import com.example.course.repository.SubTopicRepository;
 import com.example.course.repository.TopicRepository;
 import com.example.course.service.CourseService;
+import com.example.course.util.Constants;
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -50,14 +51,14 @@ public class CourseController {
 		try {
 			for(Course courseData : courseList) {
 				if(courseData.getCourseName().equalsIgnoreCase(course.getCourseName())) {
-					return ResponseEntity.ok(new Exception("Course already Added"));
+					return ResponseEntity.ok(new Exception(Constants.COURSE_ALREADY_ADDED));
 				}else {
 					return ResponseEntity.ok(this.courseService.addCourse(course));
 				}
 			}
-			return ResponseEntity.ok(new String("Course already Added"));
+			return ResponseEntity.ok(Constants.COURSE_ALREADY_ADDED);
 		} catch (Exception e) {
-			return ResponseEntity.ok(new Exception("Course already Added"));
+			return ResponseEntity.ok(new Exception(Constants.COURSE_ALREADY_ADDED));
 		}
 	}
 	
@@ -67,25 +68,49 @@ public class CourseController {
 		try {
 			for(Topics topic : topicList) {
 				if(topic.getTopicName().equalsIgnoreCase(topics.getTopicName())) {
-					return ResponseEntity.ok(new Exception("Topic already Added"));
+					return ResponseEntity.ok(new Exception(Constants.TOPIC_ALREADY_ADDED));
 				}else {
 					return ResponseEntity.ok(this.courseService.addTopics(topics));
 				}
 			}
-			return ResponseEntity.ok(new Exception("Course already Added"));
+			return ResponseEntity.ok(new Exception(Constants.TOPIC_ALREADY_ADDED));
 		} catch (Exception e) {
-			return ResponseEntity.ok(new Exception("Course already Added"));
+			return ResponseEntity.ok(new Exception(Constants.TOPIC_ALREADY_ADDED));
 		}
 	}
 	
 	@PostMapping("/add-sub_topics")
-	public SubTopic addSubTopics(@RequestBody SubTopic subTopic) {
-		return this.courseService.addSubTopics(subTopic);
+	public ResponseEntity<Object> addSubTopics(@RequestBody SubTopic subTopic) {
+		List<SubTopic> subTopicList = this.subTopicRepo.findAll();
+		try {
+			for(SubTopic subTopicData : subTopicList) {
+				if(subTopicData.getSubTopicName().equalsIgnoreCase(subTopic.getSubTopicName())) {
+					return ResponseEntity.ok(new Exception(Constants.SUBTOPIC_ALREADY_ADDED));
+				}else {
+					return ResponseEntity.ok(this.courseService.addSubTopics(subTopic));
+				}
+			}
+			return ResponseEntity.ok(new Exception(Constants.SUBTOPIC_ALREADY_ADDED));
+		} catch (Exception e) {
+			return ResponseEntity.ok(new Exception(Constants.SUBTOPIC_ALREADY_ADDED));
+		}
 	}
 	
 	@PostMapping("/add-questions")
-	public Questions addQuestions(@RequestBody Questions questions) {
-		return this.courseService.addQuestions(questions);
+	public ResponseEntity<Object> addQuestions(@RequestBody Questions questions) {
+		List<Questions> questionList = this.questionRepo.findAll();
+		try {
+			for(Questions questionData : questionList) {
+				if (questionData.getQuestion().equalsIgnoreCase(questions.getQuestion())) {
+					return ResponseEntity.ok(new Exception(Constants.QUESTION_ALREADY_ADDED));
+				} else {
+					return ResponseEntity.ok( this.courseService.addQuestions(questions));
+				}
+			}
+			return ResponseEntity.ok(new Exception(Constants.QUESTION_ALREADY_ADDED));
+		} catch (Exception e) {
+			return ResponseEntity.ok(new Exception(Constants.QUESTION_ALREADY_ADDED));
+		}
 	}
 	
 	@GetMapping("/getCourseNames")
