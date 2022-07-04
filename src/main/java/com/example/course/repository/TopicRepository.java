@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.course.entity.Course;
 import com.example.course.entity.Topics;
 
 @Repository
@@ -22,6 +21,6 @@ public interface TopicRepository extends JpaRepository<Topics, Long> {
 	
 	
 	@Query(value = "select * from topics  where course_id=?1" , nativeQuery = true)
-	public List<Topics> findTopicByCourseId(Long course_id);
+	public List<Topics> findTopicByCourseId(Long courseId);
 
 }

@@ -12,5 +12,5 @@ import com.example.course.entity.Questions;
 public interface QuestionRepository extends JpaRepository<Questions, Long> {
 
 	@Query(value = "select * from question  where sub_topic_id=?1" , nativeQuery = true)
-	public List<Questions> findQuestionsBySubTopicId(Long sub_topic_id);
+	public List<Questions> findQuestionsBySubTopicId(Long subTopicId);
 }

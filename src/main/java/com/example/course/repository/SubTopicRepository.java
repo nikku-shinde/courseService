@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.course.entity.SubTopic;
-import com.example.course.entity.Topics;
 
 @Repository
 public interface SubTopicRepository extends JpaRepository<SubTopic, Long> {
@@ -18,5 +17,5 @@ public interface SubTopicRepository extends JpaRepository<SubTopic, Long> {
 	public SubTopic findSubTopicBySubTopicName(@Param("subTopicName") String subTopicName);
 	
 	@Query(value = "select * from sub_topics  where topic_id=?1" , nativeQuery = true)
-	public List<SubTopic> findSubTopicByTopicId(Long topic_id);
+	public List<SubTopic> findSubTopicByTopicId(Long topicId);
 }
