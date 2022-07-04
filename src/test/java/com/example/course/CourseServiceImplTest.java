@@ -32,7 +32,7 @@ import com.example.course.util.Constants;
 
 @TestMethodOrder(OrderAnnotation.class)
 @SpringBootTest(classes = {CourseServiceImplTest.class})
-public class CourseServiceImplTest {
+class CourseServiceImplTest {
 	
 	@InjectMocks
 	private CourseServiceImpl courseService;
@@ -51,7 +51,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(1)
-	public void test_addCourse() {
+	void test_addCourse() {
 		CourseDTO courseDTO = new CourseDTO("Java", 1l, 2l);
 		Course course = new Course(1l, courseDTO.getCourseName(), courseDTO.getAuthorId(), courseDTO.getMentorId());
 		assertNotNull(courseDTO, Constants.COURSE_ADDED_SUCCESSFULLY);
@@ -61,7 +61,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(2)
-	public void test_addTopics() {
+	void test_addTopics() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		TopicDTO topicDTO = new TopicDTO("Java Core", course);
 		when(courseRepo.findCourseByCourseName(topicDTO.getCourse().getCourseName())).thenReturn(course);
@@ -73,7 +73,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(3)
-	public void test_addSubTopics() {
+	void test_addSubTopics() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		Topics topic = new Topics(1l, "Java Core", course);
 		SubTopicDTO subTopicDTO = new SubTopicDTO("Array", topic);
@@ -86,7 +86,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(4)
-	public void test_addQuestions() {
+	void test_addQuestions() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		Topics topic = new Topics(1l, "Java Core", course);
 		SubTopic subTopic = new SubTopic(1l, "Array", topic);
@@ -100,7 +100,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(5)
-	public void test_getCourse() {
+	void test_getCourse() {
 		List<Course> courseList = new ArrayList<Course>();
 		courseList.add(new Course(1l, "Java", 1l, 2l));
 		courseList.add(new Course(2l, "Python", 3l, 4l));
@@ -111,7 +111,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(6)
-	public void test_getTopics() {
+	void test_getTopics() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		List<Topics> topicList = new ArrayList<Topics>();
 		topicList.add(new Topics(1l, "Java Core", course));
@@ -123,7 +123,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(7)
-	public void test_getSubTopics() {
+	void test_getSubTopics() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		Topics topic = new Topics(1l, "Java Core", course);
 		List<SubTopic> subTopicList = new ArrayList<SubTopic>();
@@ -136,7 +136,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(8)
-	public void test_getQuestions() {
+	void test_getQuestions() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		Topics topic = new Topics(1l, "Java Core", course);
 		SubTopic subTopic = new SubTopic(1l, "Array", topic);
@@ -150,7 +150,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(9)
-	public void test_getTopicByCourseId() {
+	void test_getTopicByCourseId() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		List<Topics> topicList = new ArrayList<Topics>();
 		topicList.add(new Topics(1l, "Java Core", course));
@@ -163,7 +163,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(10)
-	public void test_getSubTopicByTopicId() {
+	void test_getSubTopicByTopicId() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		Topics topic = new Topics(1l, "Java Core", course);
 		List<SubTopic> subTopicList = new ArrayList<SubTopic>();
@@ -177,7 +177,7 @@ public class CourseServiceImplTest {
 	
 	@Test
 	@Order(11)
-	public void test_getQuestionsBySubTopicId() {
+	void test_getQuestionsBySubTopicId() {
 		Course course = new Course(1l, "Java", 1l, 2l);
 		Topics topic = new Topics(1l, "Java Core", course);
 		SubTopic subTopic = new SubTopic(1l, "Array", topic);
