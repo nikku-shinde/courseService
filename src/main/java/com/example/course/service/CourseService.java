@@ -1,5 +1,7 @@
 package com.example.course.service;
 
+import java.util.List;
+
 import com.example.course.dto.CourseDTO;
 import com.example.course.dto.QuestionDTO;
 import com.example.course.dto.SubTopicDTO;
@@ -18,5 +20,19 @@ public interface CourseService {
 	public SubTopic addSubTopics(SubTopicDTO subTopic);
 	
 	public Questions addQuestions(QuestionDTO questions);
+	
+	public List<Course> getCourse();
+	
+	public List<Topics> getTopics();
+	
+	public List<SubTopic> getSubTopics();
+	
+	public List<Questions> getQuestions();
+	
+	public List<Topics> getTopicByCourseId(Long courseId);
+	
+	public List<SubTopic> getSubTopicByTopicId(Long topicId);
+	
+	public List<Questions> getQuestionsBySubTopicId(Long subTopicId);
 
 }

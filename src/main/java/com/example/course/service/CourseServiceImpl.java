@@ -1,5 +1,7 @@
 package com.example.course.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,5 +67,40 @@ public class CourseServiceImpl implements CourseService {
 		questionData.setQuestion(questions.getQuestion());
 		questionData.setSubTopic(subTopic);
 		return this.questionRepo.save(questionData);
+	}
+
+	@Override
+	public List<Course> getCourse() {
+		return this.courseRepo.findAll();
+	}
+
+	@Override
+	public List<Topics> getTopics() {
+		return this.topicRepo.findAll();
+	}
+
+	@Override
+	public List<SubTopic> getSubTopics() {
+		return this.subTopicRepo.findAll();
+	}
+
+	@Override
+	public List<Questions> getQuestions() {
+		return this.questionRepo.findAll();
+	}
+
+	@Override
+	public List<Topics> getTopicByCourseId(Long courseId) {
+		return this.topicRepo.findTopicByCourseId(courseId);
+	}
+
+	@Override
+	public List<SubTopic> getSubTopicByTopicId(Long topicId) {
+		return this.subTopicRepo.findSubTopicByTopicId(topicId);
+	}
+
+	@Override
+	public List<Questions> getQuestionsBySubTopicId(Long subTopicId) {
+		return this.questionRepo.findQuestionsBySubTopicId(subTopicId);
 	}
 }

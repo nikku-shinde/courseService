@@ -118,38 +118,38 @@ public class CourseController {
 	}
 	
 	@GetMapping("/getCourseNames")
-	public List<Course> getCourseNames() {
-		return this.courseRepo.findAll();
+	public List<Course> getCourse() {
+		return this.courseService.getCourse();
 	}
 	
 	@GetMapping("/getTopics")
 	public List<Topics> getTopics() {
-		return this.topicRepo.findAll();
+		return this.courseService.getTopics();
 	}
 	
 	@GetMapping("/getSubTopics")
 	public List<SubTopic> getSubTopics() {
-		return this.subTopicRepo.findAll();
+		return this.courseService.getSubTopics();
 	}
 	
 	@GetMapping("/getQuestions")
 	public List<Questions> getQuestions() {
-		return this.questionRepo.findAll();
+		return this.courseService.getQuestions();
 	}
 	
 	@GetMapping("/getTopicsById/{courseId}")
 	public List<Topics> getTopicByCourseId(@PathVariable("courseId") Long courseId) {
-		return this.topicRepo.findTopicByCourseId(courseId);
+		return this.courseService.getTopicByCourseId(courseId);
 	}
 	
 	@GetMapping("/getSubTopicsById/{topicId}")
 	public List<SubTopic> getSubTopicByTopicId(@PathVariable("topicId") Long topicId) {
-		return this.subTopicRepo.findSubTopicByTopicId(topicId);
+		return this.courseService.getSubTopicByTopicId(topicId);
 	}
 	
 	@GetMapping("/getQuestionsById/{subTopicId}")
 	public List<Questions> getQuestionsBySubTopicId(@PathVariable("subTopicId") Long subTopicId) {
-		return this.questionRepo.findQuestionsBySubTopicId(subTopicId);
+		return this.courseService.getQuestionsBySubTopicId(subTopicId);
 	}
 
 }
